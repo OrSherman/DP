@@ -1,0 +1,13 @@
+C:\Users\Or\Documents\Visual Studio 2017\Projects\A18 Ex01 Tal 204271175 Or 311356711\A18 Ex01 Tal 204271175 Or 311356711\bin\Debug\A18 Ex01 Tal 204271175 Or 311356711.exe.config
+C:\Users\Or\Documents\Visual Studio 2017\Projects\A18 Ex01 Tal 204271175 Or 311356711\A18 Ex01 Tal 204271175 Or 311356711\bin\Debug\A18 Ex01 Tal 204271175 Or 311356711.exe
+C:\Users\Or\Documents\Visual Studio 2017\Projects\A18 Ex01 Tal 204271175 Or 311356711\A18 Ex01 Tal 204271175 Or 311356711\bin\Debug\A18 Ex01 Tal 204271175 Or 311356711.pdb
+C:\Users\Or\Documents\Visual Studio 2017\Projects\A18 Ex01 Tal 204271175 Or 311356711\A18 Ex01 Tal 204271175 Or 311356711\bin\Debug\Facebook.dll
+C:\Users\Or\Documents\Visual Studio 2017\Projects\A18 Ex01 Tal 204271175 Or 311356711\A18 Ex01 Tal 204271175 Or 311356711\bin\Debug\FbGraphApiWrapper.dll
+C:\Users\Or\Documents\Visual Studio 2017\Projects\A18 Ex01 Tal 204271175 Or 311356711\A18 Ex01 Tal 204271175 Or 311356711\obj\Debug\A18 Ex01 Tal 204271175 Or 311356711.csprojResolveAssemblyReference.cache
+C:\Users\Or\Documents\Visual Studio 2017\Projects\A18 Ex01 Tal 204271175 Or 311356711\A18 Ex01 Tal 204271175 Or 311356711\obj\Debug\A18_Ex01_Tal_204271175_Or_311356711.FormAlbum.resources
+C:\Users\Or\Documents\Visual Studio 2017\Projects\A18 Ex01 Tal 204271175 Or 311356711\A18 Ex01 Tal 204271175 Or 311356711\obj\Debug\A18_Ex01_Tal_204271175_Or_311356711.FormMain.resources
+C:\Users\Or\Documents\Visual Studio 2017\Projects\A18 Ex01 Tal 204271175 Or 311356711\A18 Ex01 Tal 204271175 Or 311356711\obj\Debug\A18_Ex01_Tal_204271175_Or_311356711.Properties.Resources.resources
+C:\Users\Or\Documents\Visual Studio 2017\Projects\A18 Ex01 Tal 204271175 Or 311356711\A18 Ex01 Tal 204271175 Or 311356711\obj\Debug\A18 Ex01 Tal 204271175 Or 311356711.csproj.GenerateResource.Cache
+C:\Users\Or\Documents\Visual Studio 2017\Projects\A18 Ex01 Tal 204271175 Or 311356711\A18 Ex01 Tal 204271175 Or 311356711\obj\Debug\A18 Ex01 Tal 204271175 Or 311356711.csproj.CoreCompileInputs.cache
+C:\Users\Or\Documents\Visual Studio 2017\Projects\A18 Ex01 Tal 204271175 Or 311356711\A18 Ex01 Tal 204271175 Or 311356711\obj\Debug\A18 Ex01 Tal 204271175 Or 311356711.exe
+C:\Users\Or\Documents\Visual Studio 2017\Projects\A18 Ex01 Tal 204271175 Or 311356711\A18 Ex01 Tal 204271175 Or 311356711\obj\Debug\A18 Ex01 Tal 204271175 Or 311356711.pdb
