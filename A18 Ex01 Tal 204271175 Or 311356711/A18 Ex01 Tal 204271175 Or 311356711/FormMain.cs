@@ -19,7 +19,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
         private AppSettings m_AppSettings;
         private LoginResult m_LoginResult;
         private DescriptivePicturesSpreader m_FreindSpreader;
-
+        //tal talonius
         public FormMain()
         {
             this.StartPosition = FormStartPosition.Manual;
