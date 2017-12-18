@@ -31,8 +31,6 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.Size = m_AppSettings.LastWindowSize;
             m_FreindSpreader = new DescriptivePicturesSpreader();
             ShowDialog();
-
-
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -120,7 +118,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             pictureBoxUserProfile.LoadAsync(m_User.PictureNormalURL);
             fetchLikedPages();
             new Thread(loadAlbums).Start();
-            new Thread(loadEvents).Start();
+            //new Thread(loadEvents).Start();
             new Thread(loadFriends).Start();
         }
 
