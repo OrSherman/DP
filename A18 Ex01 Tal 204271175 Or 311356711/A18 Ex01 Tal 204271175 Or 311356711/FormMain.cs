@@ -18,7 +18,6 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
         private User m_User;
         private AppSettings m_AppSettings;
         private LoginResult m_LoginResult;
-
         private DescriptivePicturesSpreaderFacebookCollectionAdapter m_FriendSpreader;
         private StatsFacade m_StatsFacade;
 
@@ -116,7 +115,6 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
 
         private void populateUIFromData()
         {
-
             m_User = m_LoginResult.LoggedInUser;
             m_StatsFacade = new StatsFacade(m_User);
             initLabels();
@@ -158,8 +156,9 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
         private void initLabels()
         {
             buttonLoginBtn.Visible = false;
+            checkBoxRememberMeCheckBox.Checked = true;
             buttonChangeAppID.Enabled = buttonLoginBtn.Visible;
-            textBoxChangeAppId.Enabled = buttonLoginBtn.Visible;
+            comboBoxChangeAppId.Enabled = buttonLoginBtn.Visible;
             labelTimeOfDay.Text = string.Format("Good {0}, {1}", calcTimeOfDay(), m_User.FirstName);
             labelTimeOfDay.Visible = true;
 
@@ -176,15 +175,15 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
                 labelNextEvent.Visible = true;
             }
 
-            //if (m_User.Checkins != null && m_User.Checkins.Count > 0)
-            //{
-            //    labelLastCheckIn.Text = string.Format("You've last {0}", m_User.Checkins[0]);
-            //    labelLastCheckIn.Visible = true;
-            //}
-            //else
-            //{
-            //    labelLastCheckIn.Text = "You don't have any checkins :(";
-            //}
+            if (m_User.Checkins != null && m_User.Checkins.Count > 0)
+            {
+                labelLastCheckIn.Text = string.Format("you've last {0}", m_User.Checkins[0]);
+                labelLastCheckIn.Visible = true;
+            }
+            else
+            {
+                labelLastCheckIn.Text = "you don't have any checkins :(";
+            }
 
             labelCheckIn.Text = "What's on your mind?";
             labelCheckIn.Visible = true;
@@ -196,25 +195,6 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             foreach (eProperties propertie in Enum.GetValues(typeof(eProperties)))
             {
                 listBoxProfileInfoProps.Items.Add(propertie);
-            }
-        }
-
-        private void fetchLikedPages()
-        {
-            ListBoxLikedPagesListBox.Items.Clear();
-            ListBoxLikedPagesListBox.DisplayMember = k_DisplayMember;
-
-            if (m_User.LikedPages.Count > 0)
-            {
-                foreach (object likedPage in m_User.LikedPages)
-                {
-                    ListBoxLikedPagesListBox.Items.Add(likedPage);
-                }
-            }
-            else
-            {
-                labelIfNothingUserLiked.Text = "There are no pages you liked :(";
-                labelIfNothingUserLiked.Visible = true;
             }
         }
 
@@ -239,50 +219,28 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             FacebookWrapper.FacebookService.s_CollectionLimit = 100;
         }
 
-        private void recentPosts_Click(object i_Sender, EventArgs e)
+        private void fetchLikedPages()
         {
-            Page selectedPages = ListBoxLikedPagesListBox.SelectedItem as Page;
-            string textBox = string.Empty;
+            ListBoxLikedPagesListBox.Items.Clear();
+            ListBoxLikedPagesListBox.DisplayMember = k_DisplayMember;
 
-            if (ListBoxLikedPagesListBox.SelectedItems.Count == 1)
+            if (m_User.LikedPages.Count > 0)
             {
-                showPostFromLikedPages(5);
-            }
-            else if (ListBoxLikedPagesListBox.SelectedItems.Count < 5)
-            {
-                showPostFromLikedPages(2);
-            }
-            else
-            {
-                showPostFromLikedPages(1);
-            }
-        }
-
-        private void showPostFromLikedPages(int i_PostsToFetch)
-        {
-            string textBox = string.Empty;
-
-            foreach (Page page in ListBoxLikedPagesListBox.SelectedItems)
-            {
-                for (int i = 0; i < i_PostsToFetch; i++)
+                foreach (Page likedPage in m_User.LikedPages)
                 {
-                    textBox += updatePageStatus(page, i);
+                    ListBoxLikedPagesListBox.Items.Add(likedPage);
                 }
             }
-
-            textBoxPageStatus.Text = textBox;
-        }
-
-        private string updatePageStatus(Page i_Page, int i_PostNumber)
-        {
-            if (i_Page.Posts.Count >= i_PostNumber)
-            {
-                return string.Format("Posted by {0} On {1}.{2}{3}{4}{4}{4}", i_Page.Name, i_Page.Posts[i_PostNumber].CreatedTime, Environment.NewLine, i_Page.Posts[i_PostNumber].Message, Environment.NewLine);
-            }
             else
             {
-                return string.Format("{0} has no posts to show", i_Page.Name);
+                labelIfNothingUserLiked.Text = "There are no pages you liked :(";
+                labelIfNothingUserLiked.Visible = true;
             }
+        }
+
+        private void recentPosts_Click(object i_Sender, EventArgs e)
+        {
+            textBoxPageStatus.Text = m_StatsFacade.getRecentPosts(ListBoxLikedPagesListBox.SelectedItems);
         }
 
         private void randomPostFromSpecified_Click(object i_Sender, EventArgs e)
@@ -292,12 +250,14 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             int randomPostPick;
             Page selectedPages;
 
+            //TODO: to continue from here
+
             if (ListBoxLikedPagesListBox.SelectedItems.Count > 0)
             {
                 randomPagePick = r_Random.Next(0, ListBoxLikedPagesListBox.SelectedItems.Count);
                 selectedPages = ListBoxLikedPagesListBox.SelectedItems[randomPagePick] as Page;
                 randomPostPick = r_Random.Next(0, Math.Min(100, selectedPages.Posts.Count));
-                textBox = updatePageStatus(selectedPages, randomPostPick);
+                textBox = m_StatsFacade.getAndFormatPageStatus(selectedPages, randomPostPick);
             }
 
             textBoxPageStatus.Text = textBox;
@@ -312,65 +272,35 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             {
                 randomPagePick = r_Random.Next(0, m_User.LikedPages.Count);
                 selectedPages = m_User.LikedPages[randomPagePick] as Page;
-                textBoxPageStatus.Text = updatePageStatus(selectedPages, 0);
+                textBoxPageStatus.Text = getAndFormatPageStatus(selectedPages, 0);
             }
         }
 
         private void buttonFilterFriends_Click(object i_Sender, EventArgs e)
         {
-            new Thread(fetchFilterdFriends).Start();
+            new Thread(spreadMutualPropFriends).Start();
         }
 
-        private void fetchFilterdFriends()
+        private void spreadMutualPropFriends()
         {
-            List<User> userFriends = new List<User>(m_User.Friends);
-            DescriptivePicturesSpreader finalFriends = new DescriptivePicturesSpreader();
-
+            List<eProperties> listBoxSelectedProps = new List<eProperties>();
             panelFriends.Invoke(new Action(() => panelFriends.Controls.Clear()));
-
-            checkFriendsMutualPropertie(userFriends);
-            foreach (User friend in userFriends)
-            {
-                finalFriends.Add(DescriptivePictureFactory.CreateDescriptivePicture(friend, r_PicturesSize));
-            }
-
-            labelMatchesCount.Invoke(new Action(() =>
-            {
-                labelMatchesCount.Text = finalFriends.Count > 0 ? string.Format("Found {0} matches", finalFriends.Count) : "0 matches found";
-                labelMatchesCount.Visible = true;
-            }));
-            panelFriends.Invoke(new Action(() => finalFriends.SpreadOnForm(panelFriends, new Point(0, 0), 4)));
-
-        }
-
-        private void checkFriendsMutualPropertie(List<User> i_UserFriends)
-        {
-            string userProp, friendProp;
-            List<User> test = new List<User>(i_UserFriends);
             listBoxProfileInfoProps.Invoke(new Action(() =>
             {
                 foreach (eProperties prop in listBoxProfileInfoProps.SelectedItems)
                 {
-                    foreach (User friend in test)
-                    {
-                        if (prop.ToString() == "Location" && friend.Location != null && m_User.Location != null)
-                        {
-                            userProp = m_User.Location.Name;
-                            friendProp = friend.Location.Name;
-                        }
-                        else
-                        {
-                            userProp = m_User.GetType().GetProperty(prop.ToString()).GetValue(m_User, null) as string;
-                            friendProp = friend.GetType().GetProperty(prop.ToString()).GetValue(friend, null) as string;
-                        }
-
-                        if ((userProp != friendProp && i_UserFriends.Contains(friend)) || !(userProp == null && friendProp == null))
-                        {
-                            i_UserFriends.Remove(friend);
-                        }
-                    }
+                    listBoxSelectedProps.Add(prop);
                 }
             }));
+
+            FacebookObjectCollection<User> mutualFriends = m_StatsFacade.fetchFilterdFriends(listBoxSelectedProps);
+
+            labelMatchesCount.Invoke(new Action(() =>
+            {
+                labelMatchesCount.Text = mutualFriends.Count > 0 ? string.Format("Found {0} matches", mutualFriends.Count) : "0 matches found";
+                labelMatchesCount.Visible = true;
+            }));
+            new DescriptivePicturesSpreaderFacebookCollectionAdapter().LoadAndSpreadFacebookCollection(mutualFriends, r_PicturesSize, panelFriends, new Point(0, 0),  k_itemsInLine);
         }
 
         private void checkBoxCheckedChanged(object i_Sender, EventArgs e)
@@ -400,7 +330,9 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
         private void logout()
         {
             buttonChangeAppID.Enabled = true;
-            textBoxChangeAppId.Enabled = true;
+            comboBoxChangeAppId.Enabled = true;
+            buttonLogout.Visible = false;
+            buttonLoginBtn.Visible = true;
         }
 
         private void buttonPost_Click(object i_Sender, EventArgs e)
@@ -413,7 +345,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
         private void buttonChangeAppID_Click(object i_Sender, EventArgs e)
         {
             m_AppSettings = AppSettings.LoadFromFile();
-            m_AppSettings.AppId = textBoxChangeAppId.Text;
+            m_AppSettings.AppId = comboBoxChangeAppId.Text;
             login();
         }
 
