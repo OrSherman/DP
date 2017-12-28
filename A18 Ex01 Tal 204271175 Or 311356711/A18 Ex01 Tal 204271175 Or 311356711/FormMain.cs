@@ -18,7 +18,8 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
         private User m_User;
         private AppSettings m_AppSettings;
         private LoginResult m_LoginResult;
-        private DescriptivePicturesSpreader m_FriendSpreader;
+
+        private DescriptivePicturesSpreaderFacebookCollectionAdapter m_FriendSpreader;
         private StatsFacade m_StatsFacade;
 
         public FormMain()
@@ -30,7 +31,8 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             FacebookWrapper.FacebookService.s_FbApiVersion = 2.8f;
             this.Location = m_AppSettings.LastWindowLocation;
             this.Size = m_AppSettings.LastWindowSize;
-            m_FriendSpreader = new DescriptivePicturesSpreader();
+
+            m_FriendSpreader = new DescriptivePicturesSpreaderFacebookCollectionAdapter();
             ShowDialog();
         }
 
@@ -56,12 +58,12 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
 
         private void loadEvents()
         {
-            new DescriptivePicturesSpreader().LoadAndSpreadFacebookCollection<Event>(m_User.Events, r_PicturesSize, tabPageEvents, r_PicturesStartPosition, k_itemsInLine);
+            new DescriptivePicturesSpreaderFacebookCollectionAdapter().LoadAndSpreadFacebookCollection<Event>(m_User.Events, r_PicturesSize, tabPageEvents, r_PicturesStartPosition, k_itemsInLine);
         }
 
         private void loadAlbums()
         {
-            new DescriptivePicturesSpreader().LoadAndSpreadFacebookCollection<Album>(m_User.Albums, r_PicturesSize, tabPagePhotos, r_PicturesStartPosition, k_itemsInLine);
+            new DescriptivePicturesSpreaderFacebookCollectionAdapter().LoadAndSpreadFacebookCollection<Album>(m_User.Albums, r_PicturesSize, tabPagePhotos, r_PicturesStartPosition, k_itemsInLine);
         }
         private void loadFriends()
         {
@@ -114,6 +116,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
 
         private void populateUIFromData()
         {
+
             m_User = m_LoginResult.LoggedInUser;
             m_StatsFacade = new StatsFacade(m_User);
             initLabels();

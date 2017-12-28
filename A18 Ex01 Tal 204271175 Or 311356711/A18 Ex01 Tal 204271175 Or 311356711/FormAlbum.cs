@@ -26,7 +26,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
 
         private void loadAlbumPictures()
         {
-            DescriptivePicturesSpreader descriptivePicturesSpreader = new DescriptivePicturesSpreader();
+            DescriptivePicturesSpreaderFacebookCollectionAdapter descriptivePicturesSpreader = new DescriptivePicturesSpreaderFacebookCollectionAdapter();
             descriptivePicturesSpreader.LoadFacebookCollection<Photo>(r_Album.Photos, r_PicturesSize);
             descriptivePicturesSpreader.SpreadOnForm(this, r_PicturesStartPosition, k_picturesInLine);
         }
