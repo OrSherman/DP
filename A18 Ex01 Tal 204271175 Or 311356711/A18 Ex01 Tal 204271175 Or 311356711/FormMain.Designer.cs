@@ -72,6 +72,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.tabPagePhotos = new System.Windows.Forms.TabPage();
             this.m_vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.tabPageProfile = new System.Windows.Forms.TabPage();
+            this.AppIdComboBox = new System.Windows.Forms.ComboBox();
             this.textBoxChangeAppId = new System.Windows.Forms.TextBox();
             this.buttonChangeAppID = new System.Windows.Forms.Button();
             this.buttonLogout = new System.Windows.Forms.Button();
@@ -87,7 +88,9 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.pictureBoxUserProfile = new System.Windows.Forms.PictureBox();
             this.buttonLoginBtn = new System.Windows.Forms.Button();
             this.tabs = new System.Windows.Forms.TabControl();
-            this.AppIdComboBox = new System.Windows.Forms.ComboBox();
+            this.labelHighestMutualLikedPagesFriend = new System.Windows.Forms.Label();
+            this.pictureBoxFriendWithMutualLikedPages = new System.Windows.Forms.PictureBox();
+            this.lableNumOfMutualPages = new System.Windows.Forms.Label();
             this.tabFindMutualProperties.SuspendLayout();
             this.tabStatistics.SuspendLayout();
             this.groupBoxStat.SuspendLayout();
@@ -98,6 +101,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLastTaggedIn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserProfile)).BeginInit();
             this.tabs.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriendWithMutualLikedPages)).BeginInit();
             this.SuspendLayout();
             // 
             // tabFindMutualProperties
@@ -111,10 +115,10 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.tabFindMutualProperties.Controls.Add(this.panelFriends);
             this.tabFindMutualProperties.Controls.Add(this.listBoxProfileInfoProps);
             this.tabFindMutualProperties.Controls.Add(this.buttonFilterFriends);
-            this.tabFindMutualProperties.Location = new System.Drawing.Point(10, 48);
+            this.tabFindMutualProperties.Location = new System.Drawing.Point(4, 25);
             this.tabFindMutualProperties.Name = "tabFindMutualProperties";
             this.tabFindMutualProperties.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tabFindMutualProperties.Size = new System.Drawing.Size(806, 528);
+            this.tabFindMutualProperties.Size = new System.Drawing.Size(818, 557);
             this.tabFindMutualProperties.TabIndex = 6;
             this.tabFindMutualProperties.Text = "Friends";
             // 
@@ -139,7 +143,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelMatchesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.labelMatchesCount.Location = new System.Drawing.Point(25, 262);
             this.labelMatchesCount.Name = "labelMatchesCount";
-            this.labelMatchesCount.Size = new System.Drawing.Size(126, 46);
+            this.labelMatchesCount.Size = new System.Drawing.Size(64, 25);
             this.labelMatchesCount.TabIndex = 6;
             this.labelMatchesCount.Text = "label4";
             this.labelMatchesCount.Visible = false;
@@ -149,7 +153,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.checkBoxFriendsFilter.AutoSize = true;
             this.checkBoxFriendsFilter.Location = new System.Drawing.Point(366, 87);
             this.checkBoxFriendsFilter.Name = "checkBoxFriendsFilter";
-            this.checkBoxFriendsFilter.Size = new System.Drawing.Size(151, 36);
+            this.checkBoxFriendsFilter.Size = new System.Drawing.Size(79, 21);
             this.checkBoxFriendsFilter.TabIndex = 5;
             this.checkBoxFriendsFilter.Text = "No filter";
             this.checkBoxFriendsFilter.UseVisualStyleBackColor = true;
@@ -161,7 +165,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelPickProp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPickProp.Location = new System.Drawing.Point(153, 20);
             this.labelPickProp.Name = "labelPickProp";
-            this.labelPickProp.Size = new System.Drawing.Size(1080, 46);
+            this.labelPickProp.Size = new System.Drawing.Size(556, 25);
             this.labelPickProp.TabIndex = 4;
             this.labelPickProp.Text = "Pick properties and find friends with the same properties!";
             // 
@@ -177,11 +181,11 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             // listBoxProfileInfoProps
             // 
             this.listBoxProfileInfoProps.FormattingEnabled = true;
-            this.listBoxProfileInfoProps.ItemHeight = 31;
+            this.listBoxProfileInfoProps.ItemHeight = 16;
             this.listBoxProfileInfoProps.Location = new System.Drawing.Point(18, 87);
             this.listBoxProfileInfoProps.Name = "listBoxProfileInfoProps";
             this.listBoxProfileInfoProps.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBoxProfileInfoProps.Size = new System.Drawing.Size(316, 128);
+            this.listBoxProfileInfoProps.Size = new System.Drawing.Size(316, 116);
             this.listBoxProfileInfoProps.TabIndex = 2;
             this.listBoxProfileInfoProps.SelectedIndexChanged += new System.EventHandler(this.listBoxProfileInfoProps_SelectedIndexChanged);
             // 
@@ -199,13 +203,16 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             // tabStatistics
             // 
             this.tabStatistics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(235)))), ((int)(((byte)(238)))));
+            this.tabStatistics.Controls.Add(this.lableNumOfMutualPages);
+            this.tabStatistics.Controls.Add(this.pictureBoxFriendWithMutualLikedPages);
+            this.tabStatistics.Controls.Add(this.labelHighestMutualLikedPagesFriend);
             this.tabStatistics.Controls.Add(this.labelCheckStats);
             this.tabStatistics.Controls.Add(this.groupBoxStat);
             this.tabStatistics.Controls.Add(this.groupBoxStatisticInfo);
             this.tabStatistics.Controls.Add(this.buttonStats);
-            this.tabStatistics.Location = new System.Drawing.Point(10, 48);
+            this.tabStatistics.Location = new System.Drawing.Point(4, 25);
             this.tabStatistics.Name = "tabStatistics";
-            this.tabStatistics.Size = new System.Drawing.Size(806, 528);
+            this.tabStatistics.Size = new System.Drawing.Size(818, 557);
             this.tabStatistics.TabIndex = 5;
             this.tabStatistics.Text = "Statistics";
             // 
@@ -213,9 +220,9 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             // 
             this.labelCheckStats.AutoSize = true;
             this.labelCheckStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCheckStats.Location = new System.Drawing.Point(231, 27);
+            this.labelCheckStats.Location = new System.Drawing.Point(231, 19);
             this.labelCheckStats.Name = "labelCheckStats";
-            this.labelCheckStats.Size = new System.Drawing.Size(699, 46);
+            this.labelCheckStats.Size = new System.Drawing.Size(361, 25);
             this.labelCheckStats.TabIndex = 46;
             this.labelCheckStats.Text = "Check your Facebook user statistics";
             // 
@@ -227,11 +234,11 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.groupBoxStat.Controls.Add(this.labelFriendsNum);
             this.groupBoxStat.Controls.Add(this.labelAlbumsCount);
             this.groupBoxStat.Controls.Add(this.labelFriends);
-            this.groupBoxStat.Location = new System.Drawing.Point(72, 136);
+            this.groupBoxStat.Location = new System.Drawing.Point(72, 102);
             this.groupBoxStat.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxStat.Name = "groupBoxStat";
             this.groupBoxStat.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBoxStat.Size = new System.Drawing.Size(309, 270);
+            this.groupBoxStat.Size = new System.Drawing.Size(309, 247);
             this.groupBoxStat.TabIndex = 44;
             this.groupBoxStat.TabStop = false;
             this.groupBoxStat.Text = "Account Statistics";
@@ -243,7 +250,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelEventsNum.Location = new System.Drawing.Point(40, 200);
             this.labelEventsNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelEventsNum.Name = "labelEventsNum";
-            this.labelEventsNum.Size = new System.Drawing.Size(89, 59);
+            this.labelEventsNum.Size = new System.Drawing.Size(45, 29);
             this.labelEventsNum.TabIndex = 5;
             this.labelEventsNum.Text = "NA";
             // 
@@ -254,7 +261,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelEvents.Location = new System.Drawing.Point(41, 180);
             this.labelEvents.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelEvents.Name = "labelEvents";
-            this.labelEvents.Size = new System.Drawing.Size(185, 39);
+            this.labelEvents.Size = new System.Drawing.Size(93, 20);
             this.labelEvents.TabIndex = 4;
             this.labelEvents.Text = "Events:";
             // 
@@ -265,7 +272,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelAlbums.Location = new System.Drawing.Point(40, 122);
             this.labelAlbums.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAlbums.Name = "labelAlbums";
-            this.labelAlbums.Size = new System.Drawing.Size(89, 59);
+            this.labelAlbums.Size = new System.Drawing.Size(45, 29);
             this.labelAlbums.TabIndex = 3;
             this.labelAlbums.Text = "NA";
             // 
@@ -276,7 +283,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelFriendsNum.Location = new System.Drawing.Point(40, 52);
             this.labelFriendsNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelFriendsNum.Name = "labelFriendsNum";
-            this.labelFriendsNum.Size = new System.Drawing.Size(89, 59);
+            this.labelFriendsNum.Size = new System.Drawing.Size(45, 29);
             this.labelFriendsNum.TabIndex = 2;
             this.labelFriendsNum.Text = "NA";
             // 
@@ -287,7 +294,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelAlbumsCount.Location = new System.Drawing.Point(41, 102);
             this.labelAlbumsCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAlbumsCount.Name = "labelAlbumsCount";
-            this.labelAlbumsCount.Size = new System.Drawing.Size(161, 39);
+            this.labelAlbumsCount.Size = new System.Drawing.Size(81, 20);
             this.labelAlbumsCount.TabIndex = 1;
             this.labelAlbumsCount.Text = "Albums";
             // 
@@ -298,7 +305,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelFriends.Location = new System.Drawing.Point(41, 32);
             this.labelFriends.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelFriends.Name = "labelFriends";
-            this.labelFriends.Size = new System.Drawing.Size(209, 39);
+            this.labelFriends.Size = new System.Drawing.Size(105, 20);
             this.labelFriends.TabIndex = 0;
             this.labelFriends.Text = "Friends:";
             // 
@@ -310,11 +317,11 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.groupBoxStatisticInfo.Controls.Add(this.labelPicsTaggedIn);
             this.groupBoxStatisticInfo.Controls.Add(this.labelWallPostNum);
             this.groupBoxStatisticInfo.Controls.Add(this.labelWallPosts);
-            this.groupBoxStatisticInfo.Location = new System.Drawing.Point(377, 136);
+            this.groupBoxStatisticInfo.Location = new System.Drawing.Point(377, 102);
             this.groupBoxStatisticInfo.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxStatisticInfo.Name = "groupBoxStatisticInfo";
             this.groupBoxStatisticInfo.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBoxStatisticInfo.Size = new System.Drawing.Size(361, 270);
+            this.groupBoxStatisticInfo.Size = new System.Drawing.Size(361, 247);
             this.groupBoxStatisticInfo.TabIndex = 45;
             this.groupBoxStatisticInfo.TabStop = false;
             // 
@@ -325,7 +332,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelLikesNum.Location = new System.Drawing.Point(52, 200);
             this.labelLikesNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLikesNum.Name = "labelLikesNum";
-            this.labelLikesNum.Size = new System.Drawing.Size(91, 55);
+            this.labelLikesNum.Size = new System.Drawing.Size(46, 29);
             this.labelLikesNum.TabIndex = 9;
             this.labelLikesNum.Text = "NA";
             // 
@@ -336,7 +343,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelLikedPages.Location = new System.Drawing.Point(52, 180);
             this.labelLikedPages.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLikedPages.Name = "labelLikedPages";
-            this.labelLikedPages.Size = new System.Drawing.Size(305, 39);
+            this.labelLikedPages.Size = new System.Drawing.Size(153, 20);
             this.labelLikedPages.TabIndex = 8;
             this.labelLikedPages.Text = "Liked Pages:";
             // 
@@ -347,7 +354,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelMessagesNum.Location = new System.Drawing.Point(51, 122);
             this.labelMessagesNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelMessagesNum.Name = "labelMessagesNum";
-            this.labelMessagesNum.Size = new System.Drawing.Size(91, 55);
+            this.labelMessagesNum.Size = new System.Drawing.Size(46, 29);
             this.labelMessagesNum.TabIndex = 7;
             this.labelMessagesNum.Text = "NA";
             // 
@@ -358,7 +365,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelPicsTaggedIn.Location = new System.Drawing.Point(52, 102);
             this.labelPicsTaggedIn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPicsTaggedIn.Name = "labelPicsTaggedIn";
-            this.labelPicsTaggedIn.Size = new System.Drawing.Size(473, 39);
+            this.labelPicsTaggedIn.Size = new System.Drawing.Size(237, 20);
             this.labelPicsTaggedIn.TabIndex = 6;
             this.labelPicsTaggedIn.Text = "Pictures tagged in:";
             // 
@@ -369,7 +376,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelWallPostNum.Location = new System.Drawing.Point(51, 52);
             this.labelWallPostNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelWallPostNum.Name = "labelWallPostNum";
-            this.labelWallPostNum.Size = new System.Drawing.Size(91, 55);
+            this.labelWallPostNum.Size = new System.Drawing.Size(46, 29);
             this.labelWallPostNum.TabIndex = 3;
             this.labelWallPostNum.Text = "NA";
             // 
@@ -380,14 +387,14 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelWallPosts.Location = new System.Drawing.Point(52, 32);
             this.labelWallPosts.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelWallPosts.Name = "labelWallPosts";
-            this.labelWallPosts.Size = new System.Drawing.Size(257, 39);
+            this.labelWallPosts.Size = new System.Drawing.Size(129, 20);
             this.labelWallPosts.TabIndex = 1;
             this.labelWallPosts.Text = "WallPosts:";
             // 
             // buttonStats
             // 
             this.buttonStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.buttonStats.Location = new System.Drawing.Point(314, 73);
+            this.buttonStats.Location = new System.Drawing.Point(314, 57);
             this.buttonStats.Name = "buttonStats";
             this.buttonStats.Size = new System.Drawing.Size(161, 37);
             this.buttonStats.TabIndex = 3;
@@ -405,9 +412,9 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.tabLikedPages.Controls.Add(this.buttonRandomPostFromSpecified);
             this.tabLikedPages.Controls.Add(this.buttonRecentPosts);
             this.tabLikedPages.Controls.Add(this.ListBoxLikedPagesListBox);
-            this.tabLikedPages.Location = new System.Drawing.Point(10, 48);
+            this.tabLikedPages.Location = new System.Drawing.Point(4, 25);
             this.tabLikedPages.Name = "tabLikedPages";
-            this.tabLikedPages.Size = new System.Drawing.Size(806, 528);
+            this.tabLikedPages.Size = new System.Drawing.Size(818, 557);
             this.tabLikedPages.TabIndex = 4;
             this.tabLikedPages.Text = "Random liked page post!";
             // 
@@ -416,7 +423,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelIfNothingUserLiked.AutoSize = true;
             this.labelIfNothingUserLiked.Location = new System.Drawing.Point(16, 25);
             this.labelIfNothingUserLiked.Name = "labelIfNothingUserLiked";
-            this.labelIfNothingUserLiked.Size = new System.Drawing.Size(93, 32);
+            this.labelIfNothingUserLiked.Size = new System.Drawing.Size(46, 17);
             this.labelIfNothingUserLiked.TabIndex = 48;
             this.labelIfNothingUserLiked.Text = "label4";
             this.labelIfNothingUserLiked.Visible = false;
@@ -427,7 +434,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelFindPostLikedPages.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFindPostLikedPages.Location = new System.Drawing.Point(233, 22);
             this.labelFindPostLikedPages.Name = "labelFindPostLikedPages";
-            this.labelFindPostLikedPages.Size = new System.Drawing.Size(628, 46);
+            this.labelFindPostLikedPages.Size = new System.Drawing.Size(324, 25);
             this.labelFindPostLikedPages.TabIndex = 47;
             this.labelFindPostLikedPages.Text = "Find posts from your liked pages";
             // 
@@ -477,7 +484,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.ListBoxLikedPagesListBox.FormattingEnabled = true;
             this.ListBoxLikedPagesListBox.HorizontalScrollbar = true;
             this.ListBoxLikedPagesListBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.ListBoxLikedPagesListBox.ItemHeight = 38;
+            this.ListBoxLikedPagesListBox.ItemHeight = 20;
             this.ListBoxLikedPagesListBox.Location = new System.Drawing.Point(13, 64);
             this.ListBoxLikedPagesListBox.Name = "ListBoxLikedPagesListBox";
             this.ListBoxLikedPagesListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
@@ -488,9 +495,9 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             // 
             this.tabPageEvents.AutoScroll = true;
             this.tabPageEvents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(235)))), ((int)(((byte)(238)))));
-            this.tabPageEvents.Location = new System.Drawing.Point(10, 48);
+            this.tabPageEvents.Location = new System.Drawing.Point(4, 25);
             this.tabPageEvents.Name = "tabPageEvents";
-            this.tabPageEvents.Size = new System.Drawing.Size(806, 528);
+            this.tabPageEvents.Size = new System.Drawing.Size(818, 557);
             this.tabPageEvents.TabIndex = 3;
             this.tabPageEvents.Text = "Events";
             // 
@@ -499,10 +506,10 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.tabPagePhotos.AutoScroll = true;
             this.tabPagePhotos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(235)))), ((int)(((byte)(238)))));
             this.tabPagePhotos.Controls.Add(this.m_vScrollBar1);
-            this.tabPagePhotos.Location = new System.Drawing.Point(10, 48);
+            this.tabPagePhotos.Location = new System.Drawing.Point(4, 25);
             this.tabPagePhotos.Name = "tabPagePhotos";
             this.tabPagePhotos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagePhotos.Size = new System.Drawing.Size(806, 528);
+            this.tabPagePhotos.Size = new System.Drawing.Size(818, 557);
             this.tabPagePhotos.TabIndex = 1;
             this.tabPagePhotos.Text = "Photos";
             // 
@@ -531,18 +538,28 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.tabPageProfile.Controls.Add(this.labelTimeOfDay);
             this.tabPageProfile.Controls.Add(this.pictureBoxUserProfile);
             this.tabPageProfile.Controls.Add(this.buttonLoginBtn);
-            this.tabPageProfile.Location = new System.Drawing.Point(10, 48);
+            this.tabPageProfile.Location = new System.Drawing.Point(4, 25);
             this.tabPageProfile.Name = "tabPageProfile";
             this.tabPageProfile.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageProfile.Size = new System.Drawing.Size(806, 528);
+            this.tabPageProfile.Size = new System.Drawing.Size(818, 557);
             this.tabPageProfile.TabIndex = 0;
             this.tabPageProfile.Text = "Profile";
+            // 
+            // AppIdComboBox
+            // 
+            this.AppIdComboBox.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.AppIdComboBox.Location = new System.Drawing.Point(632, 97);
+            this.AppIdComboBox.Name = "AppIdComboBox";
+            this.AppIdComboBox.Size = new System.Drawing.Size(121, 24);
+            this.AppIdComboBox.TabIndex = 22;
             // 
             // textBoxChangeAppId
             // 
             this.textBoxChangeAppId.Location = new System.Drawing.Point(399, 9);
             this.textBoxChangeAppId.Name = "textBoxChangeAppId";
-            this.textBoxChangeAppId.Size = new System.Drawing.Size(261, 38);
+            this.textBoxChangeAppId.Size = new System.Drawing.Size(261, 22);
             this.textBoxChangeAppId.TabIndex = 21;
             // 
             // buttonChangeAppID
@@ -593,7 +610,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.checkBoxRememberMeCheckBox.AutoSize = true;
             this.checkBoxRememberMeCheckBox.Location = new System.Drawing.Point(211, 6);
             this.checkBoxRememberMeCheckBox.Name = "checkBoxRememberMeCheckBox";
-            this.checkBoxRememberMeCheckBox.Size = new System.Drawing.Size(238, 36);
+            this.checkBoxRememberMeCheckBox.Size = new System.Drawing.Size(122, 21);
             this.checkBoxRememberMeCheckBox.TabIndex = 19;
             this.checkBoxRememberMeCheckBox.Text = "Remember me";
             this.checkBoxRememberMeCheckBox.UseVisualStyleBackColor = true;
@@ -625,7 +642,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelCheckIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCheckIn.Location = new System.Drawing.Point(403, 184);
             this.labelCheckIn.Name = "labelCheckIn";
-            this.labelCheckIn.Size = new System.Drawing.Size(118, 42);
+            this.labelCheckIn.Size = new System.Drawing.Size(60, 24);
             this.labelCheckIn.TabIndex = 13;
             this.labelCheckIn.Text = "label3";
             this.labelCheckIn.Visible = false;
@@ -636,7 +653,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelNextEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNextEvent.Location = new System.Drawing.Point(403, 50);
             this.labelNextEvent.Name = "labelNextEvent";
-            this.labelNextEvent.Size = new System.Drawing.Size(185, 42);
+            this.labelNextEvent.Size = new System.Drawing.Size(94, 24);
             this.labelNextEvent.TabIndex = 7;
             this.labelNextEvent.Text = "nextEvent";
             this.labelNextEvent.Visible = false;
@@ -647,7 +664,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelTaggedPhoto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTaggedPhoto.Location = new System.Drawing.Point(27, 213);
             this.labelTaggedPhoto.Name = "labelTaggedPhoto";
-            this.labelTaggedPhoto.Size = new System.Drawing.Size(726, 39);
+            this.labelTaggedPhoto.Size = new System.Drawing.Size(361, 20);
             this.labelTaggedPhoto.TabIndex = 6;
             this.labelTaggedPhoto.Text = "Here\'s a random picture you\'ve been tagged in!";
             this.labelTaggedPhoto.Visible = false;
@@ -658,7 +675,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.labelTimeOfDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTimeOfDay.Location = new System.Drawing.Point(27, 179);
             this.labelTimeOfDay.Name = "labelTimeOfDay";
-            this.labelTimeOfDay.Size = new System.Drawing.Size(109, 39);
+            this.labelTimeOfDay.Size = new System.Drawing.Size(53, 20);
             this.labelTimeOfDay.TabIndex = 5;
             this.labelTimeOfDay.Text = "label1";
             this.labelTimeOfDay.Visible = false;
@@ -699,15 +716,34 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             this.tabs.Size = new System.Drawing.Size(826, 586);
             this.tabs.TabIndex = 5;
             // 
-            // AppIdComboBox
+            // labelHighestMutualLikedPagesFriend
             // 
-            this.AppIdComboBox.Items.AddRange(new object[] {
-            "1",
-            "2"});
-            this.AppIdComboBox.Location = new System.Drawing.Point(632, 97);
-            this.AppIdComboBox.Name = "AppIdComboBox";
-            this.AppIdComboBox.Size = new System.Drawing.Size(121, 39);
-            this.AppIdComboBox.TabIndex = 22;
+            this.labelHighestMutualLikedPagesFriend.AutoSize = true;
+            this.labelHighestMutualLikedPagesFriend.Font = new System.Drawing.Font("Rod", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelHighestMutualLikedPagesFriend.Location = new System.Drawing.Point(9, 367);
+            this.labelHighestMutualLikedPagesFriend.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelHighestMutualLikedPagesFriend.Name = "labelHighestMutualLikedPagesFriend";
+            this.labelHighestMutualLikedPagesFriend.Size = new System.Drawing.Size(477, 20);
+            this.labelHighestMutualLikedPagesFriend.TabIndex = 47;
+            this.labelHighestMutualLikedPagesFriend.Text = "Friend with highest mutual liked pages:";
+            // 
+            // pictureBoxFriendWithMutualLikedPages
+            // 
+            this.pictureBoxFriendWithMutualLikedPages.Location = new System.Drawing.Point(72, 401);
+            this.pictureBoxFriendWithMutualLikedPages.Name = "pictureBoxFriendWithMutualLikedPages";
+            this.pictureBoxFriendWithMutualLikedPages.Size = new System.Drawing.Size(122, 115);
+            this.pictureBoxFriendWithMutualLikedPages.TabIndex = 48;
+            this.pictureBoxFriendWithMutualLikedPages.TabStop = false;
+            // 
+            // lableNumOfMutualPages
+            // 
+            this.lableNumOfMutualPages.AutoSize = true;
+            this.lableNumOfMutualPages.Font = new System.Drawing.Font("Rod", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lableNumOfMutualPages.Location = new System.Drawing.Point(210, 401);
+            this.lableNumOfMutualPages.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lableNumOfMutualPages.Name = "lableNumOfMutualPages";
+            this.lableNumOfMutualPages.Size = new System.Drawing.Size(0, 20);
+            this.lableNumOfMutualPages.TabIndex = 49;
             // 
             // FormMain
             // 
@@ -733,6 +769,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLastTaggedIn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserProfile)).EndInit();
             this.tabs.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriendWithMutualLikedPages)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -792,5 +829,8 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
         private Button buttonChangeAppID;
         private Label labelIfNothingUserLiked;
         private ComboBox AppIdComboBox;
+        private PictureBox pictureBoxFriendWithMutualLikedPages;
+        private Label labelHighestMutualLikedPagesFriend;
+        private Label lableNumOfMutualPages;
     }
 }

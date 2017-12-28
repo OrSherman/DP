@@ -18,7 +18,8 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
         private User m_User;
         private AppSettings m_AppSettings;
         private LoginResult m_LoginResult;
-        private DescriptivePicturesSpreader m_FreindSpreader;
+        private DescriptivePicturesSpreader m_FriendSpreader;
+        private StatsFacade m_StatsFacade;
 
         public FormMain()
         {
@@ -29,7 +30,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             FacebookWrapper.FacebookService.s_FbApiVersion = 2.8f;
             this.Location = m_AppSettings.LastWindowLocation;
             this.Size = m_AppSettings.LastWindowSize;
-            m_FreindSpreader = new DescriptivePicturesSpreader();
+            m_FriendSpreader = new DescriptivePicturesSpreader();
             ShowDialog();
         }
 
@@ -64,7 +65,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
         }
         private void loadFriends()
         {
-            m_FreindSpreader.LoadFacebookCollection<User>(m_User.Friends, r_PicturesSize);
+            m_FriendSpreader.LoadFacebookCollection<User>(m_User.Friends, r_PicturesSize);
         }
 
         private void loginBtn_Click(object i_Sender, EventArgs e)
@@ -114,12 +115,16 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
         private void populateUIFromData()
         {
             m_User = m_LoginResult.LoggedInUser;
+            m_StatsFacade = new StatsFacade(m_User);
             initLabels();
             pictureBoxUserProfile.LoadAsync(m_User.PictureNormalURL);
             fetchLikedPages();
+            
+            int i = 0;
             new Thread(loadAlbums).Start();
-            //new Thread(loadEvents).Start();
+            new Thread(loadEvents).Start();
             new Thread(loadFriends).Start();
+            new Thread(() => m_StatsFacade.getHighestMutualLikedPagesFriend(ref i)).Start();
         }
 
         private string calcTimeOfDay()
@@ -212,6 +217,11 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
 
         private void imageStats_Click(object i_Sender, EventArgs e)
         {
+            int highestMutualPages = 1;
+            StatsFacade sf = new StatsFacade(m_User);
+
+            User highestMutualLikedPagesFriend = sf.getHighestMutualLikedPagesFriend(ref highestMutualPages);
+
             FacebookWrapper.FacebookService.s_CollectionLimit = int.MaxValue;
             labelFriendsNum.Text = m_User.Friends.Count.ToString();
             labelLikesNum.Text = m_User.LikedPages.Count.ToString();
@@ -219,6 +229,10 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             labelMessagesNum.Text = m_User.PhotosTaggedIn.Count.ToString();
             labelWallPostNum.Text = m_User.WallPosts.Count.ToString();
             labelAlbums.Text = m_User.Albums.Count.ToString();
+
+            pictureBoxFriendWithMutualLikedPages.LoadAsync(highestMutualLikedPagesFriend.PictureNormalURL);
+            lableNumOfMutualPages.Text = string.Format("{0} Mutual Liked Pages", highestMutualPages);
+
             FacebookWrapper.FacebookService.s_CollectionLimit = 100;
         }
 
