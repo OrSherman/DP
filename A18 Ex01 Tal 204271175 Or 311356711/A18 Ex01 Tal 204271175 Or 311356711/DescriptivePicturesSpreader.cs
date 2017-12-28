@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using FacebookWrapper.ObjectModel;
 using System;
+using System.Collections.ObjectModel;
 
 namespace A18_Ex01_Tal_204271175_Or_311356711
 {
@@ -49,18 +50,15 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
                 itemNumberInCurrentLine++;
             }
         }
-
-        public void LoadFacebookCollection<T>(FacebookObjectCollection<T> i_FacebookObjectCollection, Size i_PictureSize) where T : FacebookObject
+        public void LoadDescriptivePicturesCollection(Collection<DescriptivePicture> i_DescriptivePictures)
         {
-            foreach (T facebookObject in i_FacebookObjectCollection)
-            {
-                this.Add(DescriptivePictureFactory.CreateDescriptivePicture(facebookObject as T, i_PictureSize));
-            }
+            m_DescriptivePictures.AddRange(i_DescriptivePictures);
         }
 
-        public void LoadAndSpreadFacebookCollection<T>(FacebookObjectCollection<T> i_FacebookObjectCollection, Size i_PictureSize, ScrollableControl i_ScrollableControl, Point i_StartPosition, int i_ItemsInALine) where T : FacebookObject
+
+        public void LoadAndSpreadCollection<T>(Collection<DescriptivePicture> i_DescriptivePicturesCollection, Size i_PictureSize, ScrollableControl i_ScrollableControl, Point i_StartPosition, int i_ItemsInALine) where T : FacebookObject
         {
-            LoadFacebookCollection(i_FacebookObjectCollection, i_PictureSize);
+            LoadDescriptivePicturesCollection(i_DescriptivePicturesCollection);
             SpreadOnForm(i_ScrollableControl, i_StartPosition, i_ItemsInALine);
         }
 

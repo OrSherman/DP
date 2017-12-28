@@ -18,8 +18,8 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
         private User m_User;
         private AppSettings m_AppSettings;
         private LoginResult m_LoginResult;
-        private DescriptivePicturesSpreader m_FreindSpreader;
-        //tal talonius
+        private DescriptivePicturesSpreaderFacebookCollectionAdapter m_FreindSpreader;
+        
         public FormMain()
         {
             this.StartPosition = FormStartPosition.Manual;
@@ -29,7 +29,7 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
             FacebookWrapper.FacebookService.s_FbApiVersion = 2.8f;
             this.Location = m_AppSettings.LastWindowLocation;
             this.Size = m_AppSettings.LastWindowSize;
-            m_FreindSpreader = new DescriptivePicturesSpreader();
+            m_FreindSpreader = new DescriptivePicturesSpreaderFacebookCollectionAdapter();
             ShowDialog();
         }
 
@@ -55,12 +55,12 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
 
         private void loadEvents()
         {
-            new DescriptivePicturesSpreader().LoadAndSpreadFacebookCollection<Event>(m_User.Events, r_PicturesSize, tabPageEvents, r_PicturesStartPosition, k_itemsInLine);
+            new DescriptivePicturesSpreaderFacebookCollectionAdapter().LoadAndSpreadFacebookCollection<Event>(m_User.Events, r_PicturesSize, tabPageEvents, r_PicturesStartPosition, k_itemsInLine);
         }
 
         private void loadAlbums()
         {
-            new DescriptivePicturesSpreader().LoadAndSpreadFacebookCollection<Album>(m_User.Albums, r_PicturesSize, tabPagePhotos, r_PicturesStartPosition, k_itemsInLine);
+            new DescriptivePicturesSpreaderFacebookCollectionAdapter().LoadAndSpreadFacebookCollection<Album>(m_User.Albums, r_PicturesSize, tabPagePhotos, r_PicturesStartPosition, k_itemsInLine);
         }
         private void loadFriends()
         {
@@ -113,12 +113,12 @@ namespace A18_Ex01_Tal_204271175_Or_311356711
 
         private void populateUIFromData()
         {
-            m_User = m_LoginResult.LoggedInUser;
+            m_User = m_LoginResult.LoggedInUser; 
             initLabels();
             pictureBoxUserProfile.LoadAsync(m_User.PictureNormalURL);
             fetchLikedPages();
             new Thread(loadAlbums).Start();
-            //new Thread(loadEvents).Start();
+            new Thread(loadEvents).Start();
             new Thread(loadFriends).Start();
         }
 
